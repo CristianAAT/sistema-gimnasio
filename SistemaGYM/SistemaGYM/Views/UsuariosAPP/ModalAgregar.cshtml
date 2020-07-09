@@ -1,0 +1,67 @@
+﻿@model SistemaGYM.Models.UsuariosAPP
+<!--Modal de agregar, vista parcial-->
+<div class="modal fade" data-backdrop="static" id="mAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Contenido-->
+            <div class="modal-header">
+                <!--Cabezera-->
+                <h4 class="modal-title" id="myModalLabel">Agregar Usuario</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" onclick="Usuarios.ClearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" class="Agregar" name="fAgregar" id="fAgregar">
+                @*asp-area="" asp-controller="UsuarioAPP" asp-action="Agregar"*@
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label asp-for="Email"></label>
+                                <input asp-for="Email" placeholder="Correo" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="UserName"></label>
+                                <input asp-for="UserName" placeholder="Nombre de usuario" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="PhoneNumber"></label>
+                                <input asp-for="PhoneNumber" placeholder="Telefono" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Rol de usuario</label>
+                                <select  class="form-control" asp-items="Model.Roles" id="Rol">
+                                    <option value="null">Selecciona uno</option>
+                                </select>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="Password"></label>
+                                <input asp-for="Password" placeholder="Contraseña" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="ConfirmPassword"></label>
+                                <input asp-for="ConfirmPassword" placeholder="Confirmación de contraseña" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer">
+                    <div>
+                        <span id="mensaje" class="text-danger"></span>
+                        <input type="text" required class="hidden" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="Usuarios.AgregarUsuario()" data-ajax="true" data-ajax-update="#tabla" [Disable]="!fAgregar.valid">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/_ViewImports.cshtml" />

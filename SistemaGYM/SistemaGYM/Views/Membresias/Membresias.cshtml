@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Newtonsoft.Json;
+@model SistemaGYM.Models.Membresia
+
+
+<body onload="Membresias.Filtrar(1, ''); Membresias.Fecha();">
+    <h1 class="text-center"><i class="far fa-calendar-check"></i>   Usuarios</h1>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-6">
+                <a class="btn btn-outline-primary" data-target="#mAgregar" data-toggle="modal">
+                    Crear membresia/mensualidad
+                </a>
+            </div>
+            <div id="alerta">
+                <div class="alert alert-dismissible fade">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row space-top-md">
+        <div class="col-md-4">
+            <input onKeyUp="Membresias.Buscar()" id="filtrar" name="Search" placeholder="Buscar membresias" class="form-control" />
+        </div>
+        <div class="def-number-input number-input safari_only col-md-2">
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+            <input class="quantity" min="10" max="50" name="quantity" value="10" type="number" id="RegsPerPag" />
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="col-md-6">
+            <a onclick="Membresias.Buscar()" class="btn btn-info">Buscar</a>
+        </div>
+    </div>
+
+    <div id="tabla">
+        <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Nombre del Socio
+                        </th>
+                        <th scope="col">
+                            Costo
+                        </th>
+                        <th scope="col">
+                            Fecha de inicio
+                        </th>
+                        <th scope="col">
+                            Fecha de finalización
+                        </th>
+                        <th scope="col">
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="ResultTable">
+                </tbody>
+            </table>
+            <div id="InfoTable"></div>
+            <div id="NavegadorTable"></div>
+        </div>
+    </div>
+
+    <!--Modal para asegurar-->
+    <div class="modal fade" data-backdrop="static" id="mEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Contenido-->
+                <div class="modal-header">
+                    <!--Cabezera-->
+                    <h4 class="modal-title text-center" id="myModalLabel">Eliminar Membresia</h4>
+                </div>
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div>
+                        <div class="row">
+                            <h3 class="text-center">¿Estas seguro de eliminar a este resgistro de Membresia?</h3>
+                        </div>
+                        <br />
+                        <div class="justify-content-center row">
+                            <button class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                            <div class=" col-3"></div>
+                            <a class=" btn btn-warning" onclick="Membresias.Eliminar()">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+</body>
+
+<partial name="ModalAgregar.cshtml" />
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

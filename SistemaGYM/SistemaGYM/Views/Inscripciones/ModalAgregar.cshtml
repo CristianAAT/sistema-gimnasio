@@ -1,0 +1,85 @@
+﻿@model SistemaGYM.Models.Socio
+<!--Modal de agregar, vista parcial-->
+<div class="modal fade" data-backdrop="static" id="mAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Contenido-->
+            <div class="modal-header">
+                <!--Cabezera-->
+                <h4 class="modal-title" id="myModalLabel">Inscribir nuevo socio</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" onclick="Productos.ClearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Imagen a subir-->
+            <center>
+                <div class="form-group">
+                    <div class="col-md-5">
+                          <img src="~/Inscripciones/default.png" id="output" class="img-fluid img-thumbnail"/>
+                    </div>
+                </div>
+                <p></p>
+                <div class="form-group btn btn-success text-light">
+                    <label for="files">Cargar foto</label>
+                    <div class="col-md-10">
+                        <input accept="image/*" class="file-input" type="file" id="inputFile" name="inputFile" onchange="Inscripciones.LoadFile(event);"/>
+                    </div>
+                </div>
+            </center>
+            <form method="post" class="Agregar" name="fAgregar" id="fAgregar">
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label>Nombre completo</label>
+                                <input asp-for="FullName" placeholder="Nombre completo del socio" class="form-control" id="FullName"/>
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Correo electronico</label>
+                                <input asp-for="Email" placeholder="Correo electronico" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Numero de telefono</label>
+                                <input asp-for="PhoneNumber" placeholder="Telefono celular" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Fecha de nacimiento</label>
+                                <input asp-for="BirthDate" placeholder="Fecha de nacimiento" type="date" class="form-control" id="dateBirth" />
+                                <span asp-validation-for="BirthDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Fecha de inscripcion</label>
+                                <input asp-for="InscriptionDate" readonly="" class="form-control" type="date" id="dateInscripcion" />
+                                <span asp-validation-for="InscriptionDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Expiracion de la inscripcion</label>
+                                <input asp-for="InscriptionExpiration" placeholder="Fecha de expiracion de la inscripcion" type="date" class="form-control" id="dateExpiration" />
+                                <span asp-validation-for="InscriptionDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Costo de la inscripcion</label>
+                                <input asp-for="InscriptionCost" placeholder="Costo de la inscripcion" class="form-control" value="1000.0" />
+                                <span asp-validation-for="InscriptionCost" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer">
+                    <div>
+                        <span id="mensaje" class="text-danger"></span>
+                        <input type="text" required class="hidden" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="Inscripciones.Agregar();" data-ajax="true" data-ajax-update="#tabla">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/_ViewImports.cshtml" />

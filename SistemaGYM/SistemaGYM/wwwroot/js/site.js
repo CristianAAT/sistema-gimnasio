@@ -1,0 +1,114 @@
+﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
+
+//Comienzo del slider
+$('.slider').each(function () {
+    var $this = $(this);
+    var $group = $this.find('.slide_group');
+    var $slides = $this.find('.slide');
+    var bulletArray = [];
+    var currentIndex = 0;
+    var timeout;
+
+    function move(newIndex) {
+        var animateLeft, slideLeft;
+
+        advance();
+
+        if ($group.is(':animated') || currentIndex === newIndex) {
+            return;
+        }
+
+        bulletArray[currentIndex].removeClass('active');
+        bulletArray[newIndex].addClass('active');
+
+        if (newIndex > currentIndex) {
+            slideLeft = '100%';
+            animateLeft = '-100%';
+        } else {
+            slideLeft = '-100%';
+            animateLeft = '100%';
+        }
+
+        $slides.eq(newIndex).css({
+            display: 'block',
+            left: slideLeft
+        });
+        $group.animate({
+            left: animateLeft
+        }, function () {
+            $slides.eq(currentIndex).css({
+                display: 'none'
+            });
+            $slides.eq(newIndex).css({
+                left: 0
+            });
+            $group.css({
+                left: 0
+            });
+            currentIndex = newIndex;
+        });
+    }
+
+    function advance() {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            if (currentIndex < ($slides.length - 1)) {
+                move(currentIndex + 1);
+            } else {
+                move(0);
+            }
+        }, 4000);
+    }
+
+    $('.next_btn').on('click', function () {
+        if (currentIndex < ($slides.length - 1)) {
+            move(currentIndex + 1);
+        } else {
+            move(0);
+        }
+    });
+
+    $('.previous_btn').on('click', function () {
+        if (currentIndex !== 0) {
+            move(currentIndex - 1);
+        } else {
+            move(3);
+        }
+    });
+
+    $.each($slides, function (index) {
+        var $button = $('<a class="slide_btn">&bull;</a>');
+
+        if (index === currentIndex) {
+            $button.addClass('active');
+        }
+        $button.on('click', function () {
+            move(index);
+        }).appendTo('.slide_buttons');
+        bulletArray.push($button);
+    });
+
+    advance();
+});
+
+//fin del slider
+
+var Usuarios = new UsuariosAPP();
+var Inscripciones = new Inscripcion();
+var Membresias = new Membresia();
+var Entradas = new Entrada();
+var Productos = new Producto();
+var Reportes = new Reporte();
+var _Home = new Home();
+
+//funciones globales
+var PrintThisDiv = (id) => {
+    var printContents = document.getElementById(id).innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+}

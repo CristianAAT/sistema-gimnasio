@@ -1,0 +1,55 @@
+﻿@model SistemaGYM.Models.UsuariosAPP
+<!--Modal de Editar, vista parcial-->
+<div class="modal fade" data-backdrop="static" id="mEditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Contenido-->
+            <div class="modal-header">
+                <!--Cabezera-->
+                <h4 class="modal-title" id="myModalLabel">Datos del Usuario</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" onclick="Usuarios.ClearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" class="Editar" name="fEditar" id="fEditar">
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label asp-for="Email"></label>
+                                <input asp-for="Email" class="form-control" readonly="" id="mEditar_Email" />
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="UserName"></label>
+                                <input asp-for="UserName" placeholder="Nombre de usuario" class="form-control" id="mEditar_UserName" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="PhoneNumber"></label>
+                                <input asp-for="PhoneNumber" placeholder="Telefono" class="form-control" id="mEditar_PhoneNumber"/>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Rol de usuario</label>
+                                <select class="form-control" asp-items="Model.Roles" id="mEditar_Rol">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer">
+                    <div>
+                        <span id="mensaje" class="text-danger"></span>
+                        <input type="text" required class="hidden" />
+                    </div>
+                    <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" onclick="Usuarios.EditarUsuario()">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/_ViewImports.cshtml" />

@@ -1,0 +1,240 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+
+
+for details on configuring this project to bundle and minify static web assets. */
+
+/*Esta parte esta echa por cristian alvarez*/
+
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+.hidden {
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+}
+
+.space-top-sm {
+    margin-top: 20px;
+}
+
+.space-top-md {
+    margin-top: 40px;
+}
+
+.space-top-lg {
+    margin-top: 60px;
+}
+
+/*Login*/
+.login-container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: bisque;
+}
+
+.login-form {
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-form h3 {
+    text-align: center;
+    color: #333;
+}
+
+.login-container form {
+    padding: 10%;
+}
+
+.btnSubmit {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form .btnSubmit {
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+
+.login-form .ForgetPwd {
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav {
+    background-color: #3D9970;    
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+/*Slider*/
+html, body {
+    background: #F7F5E6;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.carousel-inner > .carousel-item > img {
+    width: 500px;
+    height: 360px;
+}
+
+/*Para inpuit del numero*/
+.number-input input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.number-input input[type=number]::-webkit-inner-spin-button,
+.number-input input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.number-input {
+    margin-bottom: 3rem;
+}
+
+    .number-input button {
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin: 0;
+        position: relative;
+    }
+
+        .number-input button:before,
+        .number-input button:after {
+            display: inline-block;
+            position: absolute;
+            content: '';
+            height: 2px;
+            transform: translate(-50%, -50%);
+        }
+
+        .number-input button.plus:after {
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+    .number-input input[type=number] {
+        text-align: center;
+    }
+
+    .number-input.number-input {
+        border: 1px solid #ced4da;
+        width: 10rem;
+        border-radius: .25rem;
+    }
+
+        .number-input.number-input button {
+            width: 2.6rem;
+            height: .7rem;
+        }
+
+            .number-input.number-input button.minus {
+                padding-left: 10px;
+            }
+
+            .number-input.number-input button:before,
+            .number-input.number-input button:after {
+                width: .7rem;
+                background-color: #495057;
+            }
+
+        .number-input.number-input input[type=number] {
+            max-width: 4rem;
+            padding: .5rem;
+            border: 1px solid #ced4da;
+            border-width: 0 1px;
+            font-size: 1rem;
+            height: 2rem;
+            color: #495057;
+        }
+
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance: none) and (stroke-color:transparent) {
+
+        .number-input.def-number-input.safari_only button:before,
+        .number-input.def-number-input.safari_only button:after {
+            margin-top: -.3rem;
+        }
+    }
+}

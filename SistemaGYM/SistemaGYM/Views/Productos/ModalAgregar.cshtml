@@ -1,0 +1,65 @@
+﻿@model SistemaGYM.Models.Producto
+<!--Modal de agregar, vista parcial-->
+<div class="modal fade" data-backdrop="static" id="mAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Contenido-->
+            <div class="modal-header">
+                <!--Cabezera-->
+                <h4 class="modal-title" id="myModalLabel">Agregar nuevo producto</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" onclick="Productos.ClearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!--Imagen a subir-->
+            <center>
+                <div class="form-group">
+                    <div class="col-md-5">
+                          <img src="~/Productos/default.png" id="output" class="img-fluid img-thumbnail"/>
+                    </div>
+                </div>
+                <p></p>
+                <div class="form-group btn btn-success text-light">
+                    <label for="files">Cargar foto</label>
+                    <div class="col-md-10">
+                        <input accept="image/*" class="file-input" type="file" id="inputFile" name="inputFile" onchange="Productos.LoadFile(event);"/>
+                    </div>
+                </div>
+            </center>
+            <form method="post" class="Agregar" name="fAgregar" id="fAgregar">
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label>Nombre del producto</label>
+                                <input asp-for="Name" placeholder="Nombre del producto" class="form-control" id="Name"/>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Costo</label>
+                                <input asp-for="Cost" placeholder="Costo" class="form-control"/>
+                                <span asp-validation-for="Cost" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Cantidad Stock</label>
+                                <input asp-for="Stock" placeholder="Cantidad disponible" class="form-control" />
+                                <span asp-validation-for="Stock" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer">
+                    <div>
+                        <span id="mensaje" class="text-danger"></span>
+                        <input type="text" required class="hidden" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="Productos.Agregar();">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/_ViewImports.cshtml" />

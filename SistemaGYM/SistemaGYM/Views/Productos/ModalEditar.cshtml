@@ -1,0 +1,64 @@
+﻿@model SistemaGYM.Models.Producto
+<!--Modal de Editar, vista parcial-->
+<div class="modal fade" data-backdrop="static" id="mEditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Contenido-->
+            <div class="modal-header">
+                <!--Cabezera-->
+                <h4 class="modal-title" id="myModalLabel">Detalles del producto</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" onclick="Productos.ClearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <center>
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <img src="~/Productos/default.png" id="mEditar_Output" class="img-fluid img-thumbnail" />
+                    </div>
+                </div>
+                <p></p>
+                <div class="form-group btn btn-success text-light">
+                    <label for="files">Cargar foto</label>
+                    <div class="col-md-10">
+                        <input accept="image/*" class="file-input" type="file" id="inputFileEditar" name="inputFileEditar" onchange="Productos.LoadFileEditar(event);" />
+                    </div>
+                </div>
+            </center>
+            <form method="post" class="Editar" name="fEditar" id="fEditar">
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div class="form-group">
+                        <input asp-for="ProductoID" class="form-control" id="mEditar_ProductoID" hidden />
+                        <div class="col-md-10">
+                            <label>Nombre del producto</label>
+                            <input asp-for="Name" placeholder="Nombre del producto" class="form-control" id="mEditar_Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-10">
+                            <label>Costo</label>
+                            <input asp-for="Cost" class="form-control" value="1000.0" id="mEditar_Cost" />
+                            <span asp-validation-for="Cost" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-10">
+                            <label>Cantidad en Stock</label>
+                            <input asp-for="Stock" placeholder="Stock" class="form-control" id="mEditar_Stock" />
+                            <span asp-validation-for="Stock" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer">
+                    <div>
+                        <span id="mensaje" class="text-danger"></span>
+                        <input type="text" required class="hidden" />
+                    </div>
+                    <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" onclick="Productos.Editar()">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/_ViewImports.cshtml" />

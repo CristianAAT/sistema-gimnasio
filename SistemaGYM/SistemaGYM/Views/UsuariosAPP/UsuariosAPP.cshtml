@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Newtonsoft.Json;
+@model SistemaGYM.Models.UsuariosAPP
+
+
+    <body onload="Usuarios.Filtrar(1, '')">
+
+        <h1 class="text-center"><i class="fas fa-address-card"></i>   Usuarios</h1>
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-3">
+                    <a class="btn btn-outline-primary" data-target="#mAgregar" data-toggle="modal">
+                        Agregar Usuario
+                    </a>
+                </div>
+                <div id="alerta">
+                    <div class="alert alert-dismissible fade">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row space-top-md">
+            <div class="col-md-4">
+                <input onKeyUp="Usuarios.BuscarUsuarios();" id="filtrar" name="Search" placeholder="Buscar Usuario/s" class="form-control" />
+            </div>
+            <div class="def-number-input number-input safari_only col-md-2">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                <input class="quantity" min="1" max="10" name="quantity" value="3" type="number" id="RegsPerPag"  />
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+            </div>
+            <div class="col-md-6">
+                <a onclick="Usuarios.BuscarUsuarios()" class="btn btn-info">Buscar</a>
+            </div>
+        </div>
+
+        <div id="tabla">
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th scope="col">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th scope="col">
+                                Rol
+                            </th>
+                            <th scope="col">
+                                Información/Editar
+                            </th>
+                            <th scope="col">
+                                Opccion
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="ResultTable">
+                    </tbody>
+                </table>
+                <div id="InfoTable"></div>
+                <div id="NavegadorTable"></div>
+            </div>
+        </div>
+
+        <!--Modal para asegurar-->
+        <div class="modal fade" data-backdrop="static" id="mEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!--Contenido-->
+                    <div class="modal-header">
+                        <!--Cabezera-->
+                        <h4 class="modal-title text-center" id="myModalLabel">Eliminar usuario</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--Cuerpo del modal-->
+                        <div>
+                            <div class="row">
+                                <h3 class="text-center">¿Estas seguro de eliminar a este usuario?</h3>
+                            </div>
+                            <br />
+                            <div class="justify-content-center row">
+                                <button class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                                <div class=" col-3"></div>
+                                <a class=" btn btn-warning" onclick="Usuarios.EliminarUsuario()">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+<partial name="~/Views/_ViewImports.cshtml" />
+<partial name="ModalAgregar.cshtml" />
+<partial name="ModalEditar.cshtml" />
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Newtonsoft.Json;
+@model SistemaGYM.Models.Producto
+
+
+<body onload="Productos.Filtrar(1, '');">
+
+    <h1 class="text-center"><i class="fas fa-store-alt"></i>   Productos</h1>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-3">
+                <a class="btn btn-outline-primary" data-target="#mAgregar" data-toggle="modal">
+                    Añadir Producto
+                </a>
+            </div>
+            <div id="alerta">
+                <div class="alert alert-dismissible fade">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="row space-top-md">
+        <div class="col-md-4">
+            <input onKeyUp="Productos.Buscar();" id="filtrar" name="Search" placeholder="Buscar Producto" class="form-control" />
+        </div>
+        <div class="def-number-input number-input safari_only col-md-2">
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+            <input class="quantity" min="9" max="24" name="quantity" value="9" type="number" id="RegsPerPag" />
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+        </div>
+        <div class="col-md-6">
+            <a onclick="Productos.Buscar();" class="btn btn-info">Buscar</a>
+        </div>
+    </div>
+
+    <div>
+        <div class="container-fluid">
+            <div>
+                <div class="row" id="ResultDeck">
+
+                </div>
+            </div>
+            <div class="space-top-lg">
+                <div id="InfoDeck"></div>
+                <div id="NavegadorDeck"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal para asegurar-->
+    <div class="modal fade" data-backdrop="static" id="mEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!--Contenido-->
+                <div class="modal-header">
+                    <!--Cabezera-->
+                    <h4 class="modal-title text-center" id="myModalLabel">Eliminar Producto</h4>
+                </div>
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div>
+                        <div class="row">
+                            <h3 class="text-center">¿Estas seguro de eliminar a este Producto?</h3>
+                        </div>
+                        <br />
+                        <div class="justify-content-center row">
+                            <button class="btn btn-info" data-dismiss="modal">Cancelar</button>
+                            <div class=" col-3"></div>
+                            <a class=" btn btn-warning" onclick="Productos.Eliminar()">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<partial name="ModalAgregar.cshtml" />
+<partial name="ModalEditar.cshtml" />
+

@@ -1,0 +1,57 @@
+﻿@model SistemaGYM.Models.Membresia
+<!--Modal de agregar, vista parcial-->
+<div class="modal fade" data-backdrop="static" id="mAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Contenido-->
+            <div class="modal-header">
+                <!--Cabezera-->
+                <h4 class="modal-title" id="myModalLabel">Crear una membresia</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" onclick="Membresias.ClearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="col-md-10">
+                <label>Buscar nombre del socio</label>
+                <input onKeyUp="Membresias.BuscarSocio()" id="InputBuscarSocios" name="Search" placeholder="Buscar socios" class="form-control form-control-sm" />
+                <select class="custom-select-sm" id="Socios">
+                    <option value="null">Selecciona uno</option>
+                </select>
+            </div>
+            <form method="post" class="Agregar" name="fAgregar" id="fAgregar">
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label asp-for="Cost"></label>
+                                <input asp-for="Cost" placeholder="Costo $$$" class="form-control" value="100" min="0"/>
+                                <span asp-validation-for="Cost" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="StartDate"></label>
+                                <input asp-for="StartDate" placeholder="Fecha de inicio" class="form-control" readonly="readonly" id="StartDate" type="date"/>
+                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="ExpiraEn"></label>
+                                <input asp-for="ExpiraEn" placeholder="Expira en..." class="form-control" value="1" min="1" max="12" />
+                                <span asp-validation-for="ExpiraEn" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer">
+                    <div>
+                        <span id="mensaje" class="text-danger"></span>
+                        <input type="text" required class="hidden" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="Membresias.Agregar()" [Disable]="!fAgregar.valid">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/_ViewImports.cshtml" />

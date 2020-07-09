@@ -1,0 +1,51 @@
+﻿@model SistemaGYM.Models.Entrada
+<!--Modal de agregar, vista parcial-->
+<div class="modal fade" data-backdrop="static" id="mAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Contenido-->
+            <div class="modal-header">
+                <!--Cabezera-->
+                <h4 class="modal-title" id="myModalLabel">Añadir entrada del dia</h4>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" onclick="Entradas.ClearModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" class="Agregar" name="fAgregar" id="fAgregar">
+                <div class="modal-body">
+                    <!--Cuerpo del modal-->
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label asp-for="DayDate"></label>
+                                <input asp-for="DayDate" placeholder="Fecha de hoy" class="form-control" readonly="readonly" id="DayDate" type="date" />
+                                <span asp-validation-for="DayDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-10">
+                                <label>Socio o visitante</label>
+                                <select class="form-control" asp-items="Model.Types" id="Type">
+                                    <option value="null">Selecciona uno</option>
+                                </select>
+                            </div>
+                            <div class="col-md-10">
+                                <label asp-for="VisitCost"></label>
+                                <input asp-for="VisitCost" placeholder="Costo $$$" class="form-control" value="0" min="0" max="1000" />
+                                <span asp-validation-for="VisitCost" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Pie del modal-->
+                <div class="modal-footer">
+                    <div>
+                        <span id="mensaje" class="text-danger"></span>
+                        <input type="text" required class="hidden" />
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="Entradas.Agregar()" [Disable]="!fAgregar.valid">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/_ViewImports.cshtml" />

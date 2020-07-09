@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav ml-lg-5">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a>
+    </li>
+    <li class="nav-item">
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">
+            <strong class="text-danger">Salir</strong></button>
+        </form>
+    </li>
+}
+else
+{
+    //solo se podran registrar cuentas desde la cuenta maestro
+    @*<li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>*@
+    <li class="nav-item">
+        <a class="nav-link text-info" asp-area="Identity" asp-page="/Account/Login"><strong>Entrar</strong></a>
+    </li>
+}
+</ul>

@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SistemaGYM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <!--Iconos-->
+    <link rel="stylesheet" href="~/fontawesome/css/all.css">
+    <!--Clases de Javascrip-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script src="~/js/UsuariosAPP.js" asp-append-version="true"></script>
+    <script src="~/js/Inscripcion.js" asp-append-version="true"></script>
+    <script src="~/js/Membresia.js" asp-append-version="true"></script>
+    <script src="~/js/Entrada.js" asp-append-version="true"></script>
+    <script src="~/js/Producto.js" asp-append-version="true"></script>
+    <script src="~/js/Reporte.js" asp-append-version="true"></script>
+    <script src="~/js/Home.js" asp-append-version="true"></script>
+
+    <!--Para el perro chache-->
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <h3>
+                    Sistema GYM
+                </h3>
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                Menú
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav mr-auto">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <h6>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="UsuariosAPP" asp-action="UsuariosAPP">
+                                    <i class="fas fa-address-card"></i>
+                                    Usuarios del sistema
+                                </a>
+                            </h6>
+                        </li>
+                    }
+                    @if (User.IsInRole("Admin") || User.IsInRole("Gerente"))
+                    {
+                        <li class="nav-item">
+                            <h6>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Inscripciones" asp-action="Socios">
+                                    <i class="fas fa-user-circle"></i>
+                                    Incripciones
+                                </a>
+                            </h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Membresias" asp-action="Membresias">
+                                    <i class="far fa-calendar-check"></i>
+                                    Mensualidades
+                                </a>
+                            </h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Entradas" asp-action="Entradas">
+                                    <i class="fas fa-door-open"></i>
+                                    Entradas
+                                </a>
+                            </h6>
+                        </li>
+                        <li class="nav-item">
+                            <h6>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reportes" asp-action="Reportes">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Reportes
+                                </a>
+                            </h6>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <h6>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">
+                                <i class="fas fa-address-book"></i>
+                                Acerca del sistema
+                            </a>
+                        </h6>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+    <div class="container space-top-md">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <hr />
+        <div class="container">
+            <center>                
+               <p class="text-muted"><strong>Copyright <i class="fas fa-copyright"></i> 2020 · Cristian Alvarez - Sistema de gimnasios </strong></p>
+            </center>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
